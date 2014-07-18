@@ -7,7 +7,7 @@
  
       <apex:pageBlockButtons >
         <apex:commandButton action="{!upload}" value="Save"/>
-      </apex:pageBlockButtons>
+      </apex:pageBlockButtons> 
  
       <apex:pageBlockSection showHeader="false" columns="2" id="block1">
  
