@@ -1,0 +1,215 @@
+<apex:page controller="Statusupdate" showChat="false" showheader="false" sidebar="false" >
+
+<!-- Script refreence for ajax call -->
+<script src="/soap/ajax/15.0/connection.js" type="text/javascript"></script>
+<script src="/soap/ajax/15.0/apex.js" type="text/javascript"></script>
+<style type="text/css">
+
+input[type="button"]{
+    width: 50px;
+    height: 50px;
+     border: solid 1px #000;
+    border-radius:50%
+}
+
+
+
+
+</style>
+<script type="text/javascript">
+  window.onready= new function() { 
+                  Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.Statusupdate.feedloadlikeDislike}',
+                    
+                    function(result, event){
+                        if (event.status) {
+                          
+                           for (var i=0 ;i<result.length;i++)
+                              {
+                               //alert(result.length);
+                              if (parseInt(result[i].LikeCount) == 0)
+                              {    
+                             // alert(result.length);
+                              document.getElementById("btnunlike"+result[i].Id).style.display='none';
+                              document.getElementById("btnlike"+result[i].Id).style.display='inline-block';
+                              }
+                              else
+                              {
+                              //alert(result[i].Id);
+                              document.getElementById("btnunlike"+result[i].Id).style.display='inline-block';
+                              document.getElementById("btnlike"+result[i].Id).style.display='none';
+                              }
+                              
+                              }
+                           
+                          
+                        } 
+                    }, 
+                    {escape: true}
+                );
+                
+                Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.Statusupdate.loadComment}',
+                         
+                           function(result, event){
+                            if (event.status) {
+                              
+                              for (var i=0 ;i<result.length;i++)
+                              {
+                              
+                                 document.getElementById("txtComm" + result[i].FeedItemId).innerHTML +="<br/>" + result[i].CommentBody;
+                                 document.getElementById("btnshw" + result[i].FeedItemId).value="Hide Comment";
+                                 document.getElementById("btnshw" + result[i].FeedItemId).style.background="Black";
+                              }
+                               
+                              
+                            } 
+                    }, 
+                    {escape: true}
+                );
+                
+                
+                };
+                
+                
+                
+  </script>
+  
+<script type="text/javascript">
+ function updateFeedLike(feedId) {
+                      var feedItemId=feedId.replace("btnlike", "");       
+                      //alert(feedItemId);                                 
+                     Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.Statusupdate.feedLike}',
+                    feedItemId,
+                    function(result, event){
+                        if (event.status) {
+                          //alert(result);
+                           document.getElementById("btnunlike"+feedItemId).style.display='inline-block';
+                          document.getElementById(feedId).style.display='none';
+                        } 
+                    }, 
+                    {escape: true}
+                );
+                }
+                
+                function updateFeedUnLike(feedId) {
+                       var feedItemId=feedId.replace("btnunlike", "");         
+                      //alert(feedItemId);                                 
+                     Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.Statusupdate.feedUnlike}',
+                    feedItemId,
+                    
+                    function(result, event){
+                        if (event.status) {
+                          //alert(result);
+                          document.getElementById("btnlike"+feedItemId).style.display='inline-block';
+                          document.getElementById(feedId).style.display='none';
+                        } 
+                    }, 
+                    {escape: true}
+                );
+                }
+                 function updateFeedComment(feedId) {
+                          
+                          var feedItemid =feedId.replace("btnsu", "");  
+                          var textUpdate=document.getElementById("txt"+feedItemid ).value;  
+                                                     
+                     Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.Statusupdate.feedComment}',
+                    feedItemid ,textUpdate,
+                    function(result, event){
+                        if (event.status) {
+                          //alert(result);
+                          document.getElementById("txt"+feedItemid ).style.display='none';
+                          document.getElementById(feedId).style.display='none';
+                          document.getElementById("btncan"+feedItemid ).style.display='none';
+                          document.getElementById("txt"+feedItemid).value="";
+                          window.location.reload(true);
+                        } 
+                    }, 
+                    {escape: true}
+                );
+                }
+
+function CommentVisible(feedId)
+{
+var feedId=feedId.replace("btncomm", "");
+document.getElementById("txt"+feedId).style.display='inline-block';
+document.getElementById("btnsu"+feedId).style.display='inline-block';
+document.getElementById("btncan"+feedId).style.display='inline-block';
+}
+
+function CommentCancel(feedId)
+{
+var feedId=feedId.replace("btncan", "");
+document.getElementById("txt"+feedId).style.display='none';
+document.getElementById("btnsu"+feedId).style.display='none';
+document.getElementById("btncan"+feedId).style.display='none';
+}
+
+            function loadComments(feedId) {
+                   var feedItemId=feedId.replace("btnshw", ""); 
+                             if ( document.getElementById(feedId).value!="Hide Comment")
+                             {
+                               var feedItemId=feedId.replace("btnshw", "");       
+                                                          
+                             Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.Statusupdate.feedloadComment}',
+                              feedItemId,
+                               function(result, event){
+                                if (event.status) {
+                              
+                              for (var i=0 ;i<result.length;i++)
+                              {
+                              
+                              document.getElementById("txtComm" + feedItemId).innerHTML +="<br/>" + result[i].CommentBody;
+                              
+                              }
+                              
+                               document.getElementById(feedId).value="Hide Comment";
+                               document.getElementById(feedId).style.background="Black";
+                            } 
+                    }, 
+                    {escape: true}
+                );
+                }
+                else
+                {
+                 document.getElementById(feedId).value="Show Comment";
+                 document.getElementById(feedId).style.background="Peru";
+                 document.getElementById("txtComm" + feedItemId).innerHTML="";
+                }
+                }
+                
+                
+                
+          
+</script>
+ <apex:form >
+   <apex:pageBlock title="Update your chatter status" >
+            <!--<apex:image url="{!UserSmallPhoto}" height="100px" width="100px" style="border:2px"/>&nbsp;&nbsp;
+            <apex:inputTextarea id="feed" value="{!feedUpdate}" rows="2" cols="40" style="resize:none;"  />&nbsp;&nbsp;
+            <apex:commandButton value="Update" action="{!go}" reRender="recent" style="background: Green;color: white "/>-->
+        </apex:pageBlock>
+        
+        <div style="overflow-y:scroll; width:400px;height:400px;">
+        
+   <apex:outputPanel id="recent">
+           <apex:dataList value="{!recentTextUpdates1}" var="update">
+                <apex:outputText value="{!update.body}" style="font-weight:900;color:blue" />
+                <div id="txtComm{!update.Id}" style="font-weight:bold;color:violet;" />
+                <input type="button" id="btnshw{!update.Id}" value="ShowComment" onclick="loadComments(this.id);"  style="background: Peru;color: white;width: 110px;height: 30px;border: solid 1px #000;border-radius:0%"  />
+                 <input type="button" id="btncomm{!update.Id}" value="Comment" onclick="CommentVisible(this.id);"  style="background: Gray;color: white;width: 80px;height: 30px;border: solid 1px #000;border-radius:0% " />
+                 <input type="button" id="btnlike{!update.Id}" value="Like"  onclick="updateFeedLike(this.id)"  style="background: purple;color: white "/>
+                 <input type="button" id="btnunlike{!update.Id}" value="UnLike"   onclick="updateFeedUnLike(this.id)"  style="background: DarkRed;color: white; display:none;"/>
+                 <br/>
+                <textarea id="txt{!update.Id}"  rows="1" cols="25" style="height:25px;display:none;resize:none;" />
+                <input type="button" id="btnsu{!update.Id}" value="Submit" onclick="updateFeedComment(this.id)"  style="background: green;color: white;display:none;"/>
+                <input type="button" id="btncan{!update.Id}" value="Cancel" onclick="CommentCancel(this.id)"  style="background: green;color: white;display:none;"/>
+            </apex:dataList>
+        </apex:outputPanel>
+        </div>
+        
+       </apex:form>
+   </apex:page>

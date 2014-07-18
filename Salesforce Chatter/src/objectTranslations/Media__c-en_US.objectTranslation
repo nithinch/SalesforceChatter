@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Media</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Media</value>
+    </caseValues>
+    <fields>
+        <help><!-- This is checked when Media is not available at location --></help>
+        <label><!-- Not Available --></label>
+        <name>Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- ISBN --></label>
+        <name>ISBN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Late Return Fine Per day --></label>
+        <name>Late_Return_Fine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brach --></label>
+        <name>Location__c</name>
+        <relationshipLabel><!-- Media --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Loss Fine --></label>
+        <name>Loss_Fine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Number --></label>
+        <name>Media_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Id --></label>
+        <name>Unique_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Book Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Videos Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Books --></label>
+        <name>Books</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Videos --></label>
+        <name>Videos</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

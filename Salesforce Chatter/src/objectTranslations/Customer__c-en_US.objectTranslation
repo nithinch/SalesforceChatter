@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Customer</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Customers</value>
+    </caseValues>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of birth --></label>
+        <name>Date_of_birth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fine due --></label>
+        <name>Fine__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checked only if customer is the employee --></help>
+        <label><!-- IsEmployee --></label>
+        <name>IsEmployee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Issued --></label>
+        <name>Media_Issued__c</name>
+    </fields>
+    <fields>
+        <label><!-- Member --></label>
+        <name>Member__c</name>
+        <picklistValues>
+            <masterLabel>Approval Pending</masterLabel>
+            <translation><!-- Approval Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved membership</masterLabel>
+            <translation><!-- Approved membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Social Security Number --></label>
+        <name>Social_Security_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>Street__c</name>
+    </fields>
+    <fields>
+        <help><!-- Max number media that can be issued to this customer --></help>
+        <label><!-- Total media allowed --></label>
+        <name>Total_media_allowed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total media issued --></label>
+        <name>Total_media_issued__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Customer already full with limit. Please ask customer to return the old items --></errorMessage>
+        <name>Limit_the_Media_issue_to_customer</name>
+    </validationRules>
+</CustomObjectTranslation>

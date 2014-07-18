@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Customer-Media</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Customer-Media</value>
+    </caseValues>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- Customer-Media --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Issue Date --></label>
+        <name>Issue_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media --></label>
+        <name>Media__c</name>
+        <relationshipLabel><!-- Customer-Media --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Penalty Amount --></label>
+        <name>Penalty_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Return date --></label>
+        <name>Return_date__c</name>
+    </fields>
+    <layouts>
+        <layout>Customer-Media Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
